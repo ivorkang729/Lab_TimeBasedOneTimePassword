@@ -101,7 +101,9 @@ public class FixedTotp {
 
         int pastResponse = Math.max(DELAY_WINDOW, 0);
 
-        for (int i = pastResponse; i >= -1; --i) {  // 修正 當 client 是 未來日 
+        // 問題: 在臨界點時，有時驗證會通過、有時驗證不通過
+        // 解決方案: 時間段偏移值 (-1, 0, 1)
+        for (int i = pastResponse; i >= -1; --i) {  // 表示時間段偏移值 (-1, 0, 1)：前一時段、當前時段或下一時段，用於容許TOTP客戶端與服務端之間的時間誤差 
             int candidate = generate(this.secret, currentInterval - i);
             if (candidate == code) {
                 return true;
