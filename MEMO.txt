@@ -183,7 +183,8 @@ $ docker image build -t lab-1:faketime
 *** run image -------------
 $ docker run -it lab-1:faketime
 
-
+*** 專案目錄如何組織?
+參考 https://github.com/spring-projects/spring-modulith
 
 
 
